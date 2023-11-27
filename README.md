@@ -2,6 +2,15 @@
 
 Software to integrate OpenAI as a developers assistant.
 
+## First time
+
+```
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip (?)
+pip install -r requirements.txt
+```
+
 ## setup-tmux.zsh
 
 ```
