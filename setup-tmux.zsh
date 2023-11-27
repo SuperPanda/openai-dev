@@ -48,16 +48,23 @@ setup_tmux_windows() {
     tmux select-pane -t 0
     tmux split-window -v
     tmux select-pane -t 0
+    tmux send-keys "source ./.venv/bin/activate" C-m
     tmux send-keys "nvim" C-m
     tmux select-pane -t 1
+    tmux send-keys "source ./.venv/bin/activate" C-m
     tmux send-keys "clear" C-m
     tmux select-pane -t 2
     tmux split-window -v
     tmux select-pane -t 2
-    tmux resize-pane -y $((terminal_height * 60 / 100))   # Resize the pane to 60% of the terminal height
-    tmux send-keys "most README.md" C-m
+    tmux resize-pane -y $((terminal_height * 40 / 100))   # Resize the pane to 60% of the terminal height
+    tmux send-keys "source ./.venv/bin/activate" C-m
+    tmux send-keys "watch -c -n 1 'ls -uhl --recursive --sort=time'" C-m
+    #tmux send-keys "most README.md" C-m
     tmux select-pane -t 3
-    tmux send-keys "watch -n 1 'git --no-pager log --color=auto -n 1 -p'" C-m
+    tmux send-keys "source ./.venv/bin/activate" C-m
+    tmux send-keys "watch -n 1 'git diff --cached'" C-m
+    #tmux send-keys "git --no-pager log --graph --pretty=oneline --abbrev-commit --decorate --all $*" C-m
+    #tmux send-keys "watch -n 1 'git --no-pager log --color=auto -n 1 -p'" C-m
 
     # Create the "OpenAI Assistant Integration" window
     tmux new-window -n "OpenAI Assitant Integration" -t "$_TMUX_SESSION_NAME"
